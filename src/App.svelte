@@ -1,19 +1,9 @@
 <script>
-	import Router from 'svelte-spa-router';
 	import HeaderComponent from './ui/header.svelte';
-	import HomeComponent from './ui/home.svelte';
-	import LogComponent from './ui/log.svelte';
-	export const routes = {
-		'/': HomeComponent,
-		'/log': LogComponent,
-		'*': HomeComponent,
-	}
+	import Routing from './util/routing.svelte'
 </script>
 
 <main>
 	<HeaderComponent/>
-	<Router {routes}/>
+	<Routing/>
 </main>
-
-<style>
-</style>
