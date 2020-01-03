@@ -3,8 +3,6 @@
   import { auth, googleProvider } from "../environments/firebase";
   import { authState } from "rxfire/auth";
 
-  // let user;
-
   const unsubscribe = authState(auth).subscribe(u => ($user = u));
 
   function login() {
