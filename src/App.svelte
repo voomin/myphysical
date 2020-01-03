@@ -1,9 +1,9 @@
 <script>
-	import HeaderComponent from './ui/header.svelte';
-	import Routing from './util/routing.svelte'
+	import NavigationComponent from './components/navigation.svelte';
+	import RoutingComponent from './components/routing.svelte'
 </script>
 
 <main>
-	<HeaderComponent/>
-	<Routing/>
+	<NavigationComponent/>
+	<RoutingComponent/>
 </main>
