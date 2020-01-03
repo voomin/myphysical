@@ -1,10 +1,11 @@
 <script>
-  import { auth, googleProvider } from "../firebase";
+	import { user } from '../store/auth.js';
+  import { auth, googleProvider } from "../environments/firebase";
   import { authState } from "rxfire/auth";
 
-  let user;
+  // let user;
 
-  const unsubscribe = authState(auth).subscribe(u => (user = u));
+  const unsubscribe = authState(auth).subscribe(u => ($user = u));
 
   function login() {
     auth.signInWithPopup(googleProvider);
@@ -19,8 +20,8 @@
     <a class="nav-link" href="#/log">Log</a>
   </li>
   <li class="nav-item">
-    {#if user}
-      {user.displayName}
+    {#if $user}
+      {$user.displayName}
       <button on:click={() => auth.signOut()}>Logout</button>
     {:else}
       <button
