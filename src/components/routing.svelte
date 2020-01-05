@@ -1,12 +1,12 @@
 <script>
 	import Router from 'svelte-spa-router';
-	import UploadComponent from '../components/upload.svelte';
+	import HomeComponent from '../components/home.svelte';
 	import LogComponent from '../components/log.svelte';
 	
 	export const routes = {
-		'/': UploadComponent,
+		'/': HomeComponent,
 		'/log': LogComponent,
-		'*': UploadComponent,
+		'*': HomeComponent,
 	}
 </script>
 

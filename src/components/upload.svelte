@@ -3,33 +3,17 @@
   import { db } from "../environments/firebase";
   import { collectionData } from "rxfire/firestore";
   import { startWith } from "rxjs/operators";
-  // let list = [
-  //   {
-  //     title: "Squat",
-  //     value: 0,
-  //     unit: "kg"
-  //   },
-  //   {
-  //     title: "Bench press",
-  //     value: 0,
-  //     unit: "kg"
-  //   },
-  //   {
-  //     title: "Deadlift",
-  //     value: 0,
-  //     unit: "kg"
-  //   }
-  // ];
 
-  // Form Text
-  let text = "Sport Title";
-
-  const query = db
-    .collection("CustomSports")
+  let customSports;
+  onMount(async () => {
+    const query = db.collection("CustomSports");
     // .where("author", "==", $user.uid)
     // .orderBy("created");
 
-  const customSports = collectionData(query, "id").pipe(startWith([]));
+    customSports = collectionData(query, "id").pipe(startWith([]));
+  });
+  
+  let text = "Sport Title";
 
   function add() {
     db.collection("CustomSports").add({
@@ -57,13 +41,26 @@
 </script>
 
 <ul>
-  {#each $customSports as item}
+  {#each $customSports as sport}
     <li>
-      <span>{item.title} :</span>
-      <input type="number" value={item.value} />
-      <span>{item.unit}</span>
+      <span>{sport.title} :</span>
+      <input type="number" bind:value={sport.value} />
+      <span>{sport.unitType}</span>
     </li>
   {/each}
 </ul>
-
-<button on:click={add}>add sport</button>
+<div>
+  <div class="form-check form-check-inline">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      id="ckbox-unitType-kg"
+      value="kg"  checked/>
+    <label class="form-check-label" for="ckbox-unitType-kg">kg</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="ckbox-unitType-lbs" value="lbs">
+    <label class="form-check-label" for="ckbox-unitType-lbs">lbs</label>
+  </div>
+  <button on:click={add}>add sport</button>
+</div>

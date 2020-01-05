@@ -3,7 +3,7 @@
 	import RoutingComponent from './components/routing.svelte'
 </script>
 
-<main>
+<container>
 	<NavigationComponent/>
 	<RoutingComponent/>
-</main>
+</container>
