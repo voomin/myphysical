@@ -7,21 +7,20 @@
   import { collectionData } from "rxfire/firestore";
   import { startWith } from "rxjs/operators";
 
-  let text = "Sport Title";
-
   const query = db.collection("CustomSports");
   // .where("author", "==", $user.uid)
   // .orderBy("created");
   const customSports = collectionData(query, "id").pipe(startWith([]));
 
   function add() {
+    const title = 'sport';
+    const unitType = 'kg';
     db.collection("CustomSports").add({
       author: $user.uid,
-      title: text,
-      unitType: "kg",
+      title: title,
+      unitType: unitType,
       created: Date.now()
     });
-    text = "";
   }
 
   // function updateStatus(event) {
