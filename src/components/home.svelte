@@ -1,5 +1,5 @@
 <script>
-  import SportsForm from "./sport/SportsForm.svelte";
+  import SportList from "./sport/SportList.svelte";
   import SportAdd from "./sport/SportAdd.svelte";
 
   import { user } from "../store/auth";
@@ -39,6 +39,12 @@
 </script>
 
 <h3>home</h3>
-<SportsForm {customSports} />
-<SportAdd on:click="{() => add()}"/>
+{#if user.uid}
+  <!-- content here -->
+  <SportList {customSports} />
+  <SportAdd on:click="{() => add()}"/>
+{:else}
+  <!-- else content here -->
+  로그인을 먼저 해주세요.
+{/if}
 
